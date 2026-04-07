@@ -26,7 +26,7 @@ APPS = [
     {
         "name": "Meeting Notes",
         "description": "AI-powered meeting transcription, action items, and client communication summaries.",
-        "url": "/meeting-notes",
+        "url": "/meeting-notes/",
         "status": "live",
         "icon": "clipboard",
     },
