@@ -19,7 +19,7 @@ APPS = [
     {
         "name": "RENCO CALC",
         "description": "Renco block quantities, container packing, and shipping logistics from Archicad BIM models.",
-        "url": "https://sprtic1.github.io/renco-calc/",
+        "url": "/renco/",
         "status": "live",
         "icon": "cube",
     },
