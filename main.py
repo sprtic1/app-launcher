@@ -46,10 +46,23 @@ APPS = [
     },
 ]
 
+CLIENT_PORTALS = [
+    {
+        "name": "McCollum Residence",
+        "subtitle": "408 Cayuse Court",
+        "url": "/client/mccollum",
+        "categories": 7,
+    },
+]
+
 
 @app.get("/", response_class=HTMLResponse)
 async def hub(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "apps": APPS})
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "apps": APPS,
+        "portals": CLIENT_PORTALS,
+    })
 
 
 @app.get("/health")

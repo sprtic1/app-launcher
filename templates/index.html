@@ -169,6 +169,65 @@
       color: var(--warm-gray);
     }
 
+    /* Client portal cards */
+    .portal-section {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .portal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.75rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .portal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--olive);
+    }
+    .portal-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--olive-darker) 0%, var(--olive) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .portal-icon svg { width: 24px; height: 24px; fill: white; }
+    .portal-name {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--olive-darker);
+    }
+    .portal-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    .portal-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--warm-gray-light);
+      margin-top: 0.15rem;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -232,6 +291,26 @@
       {% endif %}
       {% endfor %}
     </div>
+
+    {% if portals %}
+    <div class="portal-section">
+      <div class="section-label">Client Portals</div>
+      <div class="portal-grid">
+        {% for p in portals %}
+        <a class="portal-card" href="{{ p.url }}">
+          <div class="portal-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <div class="portal-name">{{ p.name }}</div>
+            <div class="portal-sub">{{ p.subtitle }}</div>
+            <div class="portal-meta">{{ p.categories }} schedule categories</div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
   </main>
 
   <footer class="footer">
