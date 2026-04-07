@@ -16,13 +16,13 @@ templates = Jinja2Templates(directory=str(BASE / "templates"))
 app.mount("/static", StaticFiles(directory=str(BASE / "static")), name="static")
 
 APPS = [
-    {
-        "name": "RENCO CALC",
-        "description": "Renco block quantities, container packing, and shipping logistics from Archicad BIM models.",
-        "url": "/renco/",
-        "status": "live",
-        "icon": "cube",
-    },
+    # {
+    #     "name": "RENCO CALC",
+    #     "description": "Renco block quantities, container packing, and shipping logistics from Archicad BIM models.",
+    #     "url": "/renco/",
+    #     "status": "live",
+    #     "icon": "cube",
+    # },
     {
         "name": "Meeting Notes",
         "description": "AI-powered meeting transcription, action items, and client communication summaries.",
@@ -31,8 +31,8 @@ APPS = [
         "icon": "clipboard",
     },
     {
-        "name": "FF&E Schedules",
-        "description": "Furniture, fixtures & equipment schedules extracted from Archicad with interactive dashboards.",
+        "name": "EBIF Schedules",
+        "description": "Ellis Building Intelligence Framework — FF&E schedules extracted from Archicad with interactive dashboards.",
         "url": "https://sprtic1.github.io/ebif-calc/",
         "status": "live",
         "icon": "table",
