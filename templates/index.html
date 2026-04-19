@@ -326,16 +326,6 @@
 
       </div>
 
-      {% if portals %}
-      <div class="portals-subsection">
-        <div class="portals-label">Active Client Portals</div>
-        <div class="portal-list">
-          {% for p in portals %}
-          <a class="portal-chip" href="{{ p.url }}">{{ p.name }}</a>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
     </div>
 
     <!-- ── Section 2: EID Platform ────────────────────────── -->
@@ -440,6 +430,21 @@
 
       </div>
     </div>
+
+    <!-- ── Client Portals ───────────────────────────────────── -->
+    {% if portals %}
+    <div class="product-section">
+      <div class="section-head">
+        <span class="section-title">Client Portals</span>
+        <span class="section-tagline">Active project portals</span>
+      </div>
+      <div class="portal-list">
+        {% for p in portals %}
+        <a class="portal-chip" href="{{ p.url }}">{{ p.name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
 
     <!-- ── Refresh ────────────────────────────────────────── -->
     <div class="refresh-row">
