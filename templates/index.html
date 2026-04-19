@@ -21,7 +21,7 @@
       --text-light: #666;
       --border: #E0E2D4;
       --shadow: 0 2px 12px rgba(0,0,0,0.06);
-      --shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-hover: 0 8px 28px rgba(0,0,0,0.11);
       --radius: 12px;
     }
 
@@ -35,9 +35,9 @@
       min-height: 100vh;
     }
 
-    /* Header */
+    /* ── Header ──────────────────────────────────────────── */
     .header {
-      background: linear-gradient(135deg, var(--olive-darker) 0%, var(--olive) 50%, var(--olive-dark) 100%);
+      background: linear-gradient(135deg, var(--olive-darker) 0%, var(--olive) 55%, var(--olive-dark) 100%);
       color: white;
       padding: 3rem 0 2.5rem;
       text-align: center;
@@ -47,71 +47,83 @@
       font-weight: 900;
       font-size: 2.5rem;
       letter-spacing: 2px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .header .subtitle {
       font-family: 'Lato', sans-serif;
       font-weight: 300;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       opacity: 0.85;
     }
     .header .org {
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      opacity: 0.6;
-      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      opacity: 0.55;
+      margin-top: 0.6rem;
       letter-spacing: 1px;
     }
 
-    /* Container */
+    /* ── Layout ──────────────────────────────────────────── */
     .container {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* Section label */
-    .section-label {
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      margin: 2.5rem 0 1.25rem;
+    /* ── Product section ─────────────────────────────────── */
+    .product-section {
+      padding: 2.5rem 0 0.5rem;
+    }
+    .product-section + .product-section {
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
     }
 
-    /* App grid */
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--olive-darker);
+      letter-spacing: 0.5px;
+    }
+    .section-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--warm-gray-light);
+    }
+
+    /* ── App grid ────────────────────────────────────────── */
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
-    /* App card */
+    /* ── App card ────────────────────────────────────────── */
     .app-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 1.75rem;
-      text-decoration: none;
-      color: var(--text);
+      padding: 1.5rem 1.5rem 1.25rem;
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
     }
     .app-card:hover {
-      transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
-      border-color: var(--olive);
+      border-color: var(--sage);
+      transform: translateY(-3px);
     }
     .app-card.planned {
-      opacity: 0.65;
-      cursor: default;
+      opacity: 0.6;
     }
     .app-card.planned:hover {
       transform: none;
@@ -119,216 +131,327 @@
       border-color: var(--border);
     }
 
-    /* Card icon */
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--sage-light);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-    .app-card:hover .card-icon { background: var(--sage); }
-
-    /* Card content */
     .card-name {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--olive-darker);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.45rem;
     }
     .card-desc {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--text-light);
-      line-height: 1.5;
+      line-height: 1.55;
       flex-grow: 1;
     }
 
-    /* Status badge */
-    .status-badge {
-      display: inline-block;
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.1rem;
+    }
+    .status-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.5px;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      margin-top: 1rem;
-      align-self: flex-start;
+      font-size: 0.68rem;
+      color: var(--warm-gray-light);
+      letter-spacing: 0.3px;
     }
-    .status-live {
-      background: var(--sage-light);
-      color: var(--olive-dark);
+    .status-dot::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--warm-gray-light);
     }
-    .status-planned {
-      background: #F0F0EC;
-      color: var(--warm-gray);
-    }
+    .status-dot.live { color: var(--olive-dark); }
+    .status-dot.live::before { background: var(--olive); }
 
-    /* Client portal cards */
-    .portal-section {
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-      margin-top: 1rem;
-    }
-    .portal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .portal-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.75rem;
-      text-decoration: none;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .portal-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--olive);
-    }
-    .portal-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--olive-darker) 0%, var(--olive) 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .portal-icon svg { width: 24px; height: 24px; fill: white; }
-    .portal-name {
+    .launch-btn {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--olive-darker);
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--olive-dark);
+      background: var(--sage-light);
+      border: none;
+      border-radius: 6px;
+      padding: 0.35rem 0.85rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      display: inline-block;
     }
-    .portal-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      color: var(--text-light);
+    .launch-btn:hover { background: var(--sage); color: var(--olive-darker); }
+    .launch-btn.disabled {
+      color: var(--warm-gray-light);
+      background: #F0F0EC;
+      cursor: default;
+      pointer-events: none;
     }
-    .portal-meta {
+
+    /* ── Client portals sub-section ──────────────────────── */
+    .portals-subsection {
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+    }
+    .portals-label {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       color: var(--warm-gray-light);
-      margin-top: 0.15rem;
+      margin-bottom: 0.85rem;
+    }
+    .portal-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .portal-chip {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--olive-dark);
+      background: var(--sage-light);
+      border: 1px solid var(--sage);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .portal-chip:hover { background: var(--sage); color: var(--olive-darker); }
+
+    /* ── Refresh button ──────────────────────────────────── */
+    .refresh-row {
+      text-align: center;
+      margin: 1.5rem 0 0.5rem;
+      padding-bottom: 2rem;
+    }
+    .refresh-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.73rem;
+      letter-spacing: 0.4px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.45rem 1.2rem;
+      color: var(--warm-gray);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .refresh-btn:hover { border-color: var(--olive); color: var(--olive); }
+    .refresh-msg {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--warm-gray-light);
+      margin-top: 0.4rem;
     }
 
-    /* Footer */
+    /* ── Footer ──────────────────────────────────────────── */
     .footer {
       text-align: center;
-      padding: 2rem;
+      padding: 1.5rem 2rem;
       color: var(--warm-gray-light);
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       border-top: 1px solid var(--border);
-      margin-top: 2rem;
     }
 
-    /* SVG icons */
-    .icon-svg { width: 24px; height: 24px; fill: var(--olive); }
-
-    @media (max-width: 640px) {
-      .header h1 { font-size: 1.75rem; }
+    @media (max-width: 680px) {
+      .header h1 { font-size: 1.8rem; }
       .app-grid { grid-template-columns: 1fr; }
-      .container { padding: 0 1rem; }
+      .container { padding: 0 1.1rem; }
+      .section-head { flex-direction: column; gap: 0.2rem; }
+    }
+    @media (min-width: 681px) and (max-width: 900px) {
+      .app-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
+
   <header class="header">
     <div class="container">
-      <img src="/static/eid-logo-white-full.png" alt="Ellis Interior Design" style="height:80px; margin-bottom:1rem; opacity:0.95;">
+      <img src="/static/eid-logo-white-full.png" alt="Ellis Interior Design" style="height:72px; margin-bottom:1rem; opacity:0.95;">
       <h1>EID APPS</h1>
-      <div class="subtitle">Ellis Interior Design &mdash; App Platform</div>
+      <div class="subtitle">Ellis Interior Design - App Platform</div>
       <div class="org">apps.ellisid.com</div>
     </div>
   </header>
 
   <main class="container">
-    <div class="section-label">Applications</div>
-    <div class="app-grid">
-      {% for app in apps %}
-      {% if app.status == 'live' %}
-      <a class="app-card" href="{{ app.url }}">
-      {% else %}
-      <div class="app-card planned">
-      {% endif %}
-        <div class="card-icon">
-          {% if app.icon == 'cube' %}
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.36.2-.8.2-1.14 0l-7.9-4.44A.991.991 0 013 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.36-.2.8-.2 1.14 0l7.9 4.44c.32.17.53.5.53.88v9zM12 4.15L5 8.09v7.82l7 3.94 7-3.94V8.09l-7-3.94z"/></svg>
-          {% elif app.icon == 'clipboard' %}
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z"/></svg>
-          {% elif app.icon == 'table' %}
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm2 2v4h6V5H5zm8 0v4h6V5h-6zM5 11v4h6v-4H5zm8 0v4h6v-4h-6zM5 17v2h6v-2H5zm8 0v2h6v-2h-6z"/></svg>
-          {% elif app.icon == 'drafting' %}
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 000-1.42l-2.34-2.34a1.003 1.003 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/></svg>
-          {% elif app.icon == 'swatch' %}
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 6l4.5-4.5a1 1 0 011.42 0l14.14 14.14a1 1 0 010 1.42L17.5 21.5a1 1 0 01-1.42 0L2 7.42A1 1 0 012 6zm1.71 1L14.38 17.67l2.83-2.83L6.54 4.17 3.71 7zm12.38 11.5l1.41-1.41-1.41-1.42-1.42 1.42 1.42 1.41zM5 20h14v2H5z"/></svg>
-          {% endif %}
+
+    <!-- ── Section 1: EBIF ─────────────────────────────────── -->
+    <div class="product-section">
+      <div class="section-head">
+        <span class="section-title">EBIF</span>
+        <span class="section-tagline">Ellis Building Intelligence Framework</span>
+      </div>
+      <div class="app-grid">
+
+        <div class="app-card">
+          <div class="card-name">EBIF Schedules</div>
+          <div class="card-desc">Archicad-to-Excel FF&amp;E schedule extraction with interactive dashboards and client exports.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="https://eid-apps.github.io/ebif-calc/" target="_blank">Launch</a>
+          </div>
         </div>
-        <div class="card-name">{{ app.name }}</div>
-        <div class="card-desc">{{ app.description }}</div>
-        <span class="status-badge {{ 'status-live' if app.status == 'live' else 'status-planned' }}">
-          {{ app.status | upper }}
-        </span>
-      {% if app.status == 'live' %}
-      </a>
-      {% else %}
+
+        <div class="app-card">
+          <div class="card-name">EBIF Client Portal</div>
+          <div class="card-desc">Client-facing view of project schedule data, finishes, and deliverables.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/client/">Launch</a>
+          </div>
+        </div>
+
+        <div class="app-card planned">
+          <div class="card-name">EBIF Website</div>
+          <div class="card-desc">Static GitHub Pages site for EBIF documentation and public-facing project reports.</div>
+          <div class="card-footer">
+            <span class="status-dot">Planned</span>
+            <span class="launch-btn disabled">Coming Soon</span>
+          </div>
+        </div>
+
+      </div>
+
+      {% if portals %}
+      <div class="portals-subsection">
+        <div class="portals-label">Active Client Portals</div>
+        <div class="portal-list">
+          {% for p in portals %}
+          <a class="portal-chip" href="{{ p.url }}">{{ p.name }}</a>
+          {% endfor %}
+        </div>
       </div>
       {% endif %}
-      {% endfor %}
     </div>
 
-    {% if portals %}
-    <div class="portal-section">
-      <div class="section-label">Client Portals</div>
-      <div class="portal-grid">
-        {% for p in portals %}
-        <a class="portal-card" href="{{ p.url }}">
-          <div class="portal-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+    <!-- ── Section 2: EID Platform ────────────────────────── -->
+    <div class="product-section">
+      <div class="section-head">
+        <span class="section-title">EID Platform</span>
+        <span class="section-tagline">Core tools and workflows</span>
+      </div>
+      <div class="app-grid">
+
+        <div class="app-card">
+          <div class="card-name">Project Hub</div>
+          <div class="card-desc">Project management dashboard - Archicad data sync, schedule management, and export control.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/project-hub/">Launch</a>
           </div>
-          <div>
-            <div class="portal-name">{{ p.name }}</div>
-            <div class="portal-sub">{{ p.subtitle }}</div>
-            <div class="portal-meta">{{ p.categories }} schedule categories</div>
+        </div>
+
+        <div class="app-card">
+          <div class="card-name">Plaud Meeting Notes</div>
+          <div class="card-desc">Converts Plaud voice memos into formatted Word meeting notes and ClickUp action items.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/plaud-control/">Launch</a>
           </div>
-        </a>
-        {% endfor %}
+        </div>
+
+        <div class="app-card">
+          <div class="card-name">Texture Studio</div>
+          <div class="card-desc">Convert sample photos to seamless tileable textures for Archicad and 3D rendering.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/texture-studio/">Launch</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="card-name">Material Viewer</div>
+          <div class="card-desc">Preview materials on 3D furniture models and share interactive finish selections with clients.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/material-viewer/">Launch</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="card-name">Sample Library</div>
+          <div class="card-desc">Auto-files samples from the Dropbox inbox into the Digital Design Library with tagging.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/sample-library/">Launch</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="card-name">Shop Drawing QA</div>
+          <div class="card-desc">AI-powered shop drawing review - markup, spec compliance checks, and approval workflows.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="/shop-drawing-qa/">Launch</a>
+          </div>
+        </div>
+
       </div>
     </div>
-    {% endif %}
 
-    <div style="text-align:center; margin:2rem 0 1rem;">
-      <button id="refresh-btn" onclick="refreshAll()" style="
-        font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.5px;
-        background:none; border:1px solid var(--border); border-radius:20px;
-        padding:0.5rem 1.25rem; color:var(--warm-gray); cursor:pointer;
-        transition: all 0.15s;
-      " onmouseover="this.style.borderColor='var(--olive)';this.style.color='var(--olive)'"
-         onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--warm-gray)'">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:4px;">
+    <!-- ── Section 3: Renco ───────────────────────────────── -->
+    <div class="product-section">
+      <div class="section-head">
+        <span class="section-title">Renco</span>
+        <span class="section-tagline">Modular construction tools</span>
+      </div>
+      <div class="app-grid">
+
+        <div class="app-card planned">
+          <div class="card-name">Renco Pipeline</div>
+          <div class="card-desc">Archicad wall-to-block quantity takeoff pipeline for modular construction estimating.</div>
+          <div class="card-footer">
+            <span class="status-dot">Planned</span>
+            <span class="launch-btn disabled">Coming Soon</span>
+          </div>
+        </div>
+
+        <div class="app-card planned">
+          <div class="card-name">Renco Dashboard</div>
+          <div class="card-desc">FastAPI data viewer for Renco block quantities, cost summaries, and project comparisons.</div>
+          <div class="card-footer">
+            <span class="status-dot">Planned</span>
+            <span class="launch-btn disabled">Coming Soon</span>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="card-name">Renco Website</div>
+          <div class="card-desc">GitHub Pages report site for Renco modular construction calculations and project data.</div>
+          <div class="card-footer">
+            <span class="status-dot live">Live</span>
+            <a class="launch-btn" href="https://sprtic1.github.io/renco-calc" target="_blank">Launch</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Refresh ────────────────────────────────────────── -->
+    <div class="refresh-row">
+      <button id="refresh-btn" class="refresh-btn" onclick="refreshAll()">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px; margin-right:4px;">
           <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
         </svg>
         Refresh All Data
       </button>
-      <div id="refresh-msg" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--warm-gray-light);margin-top:0.4rem;"></div>
+      <div id="refresh-msg" class="refresh-msg"></div>
     </div>
+
   </main>
 
   <footer class="footer">
@@ -343,17 +466,21 @@
     btn.textContent = 'Refreshing...';
     msg.textContent = '';
     try {
-      const resp = await fetch('/client/refresh-all', {method: 'POST'});
+      const resp = await fetch('/client/refresh-all', { method: 'POST' });
       const data = await resp.json();
       msg.textContent = 'Cache cleared (' + data.cleared_files + ' files). Reload any portal page to see fresh data.';
       btn.textContent = 'Done';
-      setTimeout(() => { btn.disabled = false; btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:4px;"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg> Refresh All Data'; }, 3000);
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:4px;"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg> Refresh All Data';
+      }, 3000);
     } catch(e) {
-      msg.textContent = 'Refresh failed — try again.';
+      msg.textContent = 'Refresh failed - try again.';
       btn.disabled = false;
       btn.textContent = 'Refresh All Data';
     }
   }
   </script>
+
 </body>
 </html>
