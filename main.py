@@ -1,22 +1,26 @@
-"""EID App Platform — Hub Launcher.
+"""App Platform — Hub Launcher.
 
-Serves the main landing page at apps.ellisid.com with cards for each app.
-Client portals are discovered dynamically from the eid-client-webpage API.
+Serves the main landing page with cards for each app.
+Client portals are discovered dynamically from the client-webpage API.
 """
 
 import logging
+import sys
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "shared"))
+from config_loader import tenant
+
 import httpx
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("eid-launcher")
+logger = logging.getLogger(f"{tenant.firm.service_prefix}-launcher")
 
-app = FastAPI(title="EID App Platform", version="2.0")
+app = FastAPI(title=f"{tenant.firm.short_name} App Platform", version="2.0")
 
 BASE = Path(__file__).parent
 templates = Jinja2Templates(directory=str(BASE / "templates"))
@@ -28,8 +32,8 @@ import time
 from pathlib import Path as _Path
 
 # ── Registry config ────────────────────────────────────────────────────────────
-_REGISTRY_DROPBOX_PATH = "/EID TEAM FOLDER/EID APP/PROJECT MANAGER/projects.json"
-_ENV_FILE = _Path("/opt/eid-apps/plaud-control/engine/.env")
+_REGISTRY_DROPBOX_PATH = tenant.dropbox.registry_path
+_ENV_FILE = _Path(tenant.deployment.base_path) / "plaud-control" / "engine" / ".env"
 _registry_cache: list | None = None
 _registry_cache_at: float = 0.0
 _REGISTRY_TTL = 300  # 5 minutes
@@ -109,7 +113,7 @@ async def load_active_projects() -> list[dict]:
 APPS = [
     {
         "name": "EBIF Schedules",
-        "description": "Ellis Building Intelligence Framework — FF&E schedules extracted from Archicad with interactive dashboards.",
+        "description": f"{tenant.firm.framework_name} — FF&E schedules extracted from Archicad with interactive dashboards.",
         "url": "https://eid-apps.github.io/ebif-calc/",
         "status": "live",
         "icon": "table",
@@ -159,7 +163,7 @@ APPS = [
 ]
 
 # Internal URL for the eid-client-webpage API (same server)
-CLIENT_WEBPAGE_API = "http://127.0.0.1:8009"
+CLIENT_WEBPAGE_API = f"http://127.0.0.1:{tenant.integrations.client_webpage_port}"
 
 
 async def _load_portals() -> list[dict]:
@@ -198,7 +202,7 @@ async def api_registry_projects():
             "address":    p.get("project_address", ""),
             "owner":      (p.get("owner") or {}).get("last_name", ""),
             "status":     p.get("status", "Active"),
-            "portal_url": f"https://apps.ellisid.com/client/{slug}" if slug else "",
+            "portal_url": f"https://{tenant.firm.domain}/client/{slug}" if slug else "",
             "has_portal": bool(slug),
         })
     return result
@@ -217,4 +221,4 @@ async def hub(request: Request):
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "service": "eid-app-platform", "version": "2.0"}
+    return {"status": "ok", "service": f"{tenant.firm.service_prefix}-app-platform", "version": "2.0"}
